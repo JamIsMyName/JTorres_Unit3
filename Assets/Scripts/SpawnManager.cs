@@ -4,25 +4,37 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+
     public GameObject obsPrefab;
-    private Vector3 spawnPos = new Vector3(8,0,0);
+    private Vector3 spawnPos = new Vector3(25, 0, 0);
+    private PlayerController playerCtrtl;
 
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnObs", 2, 2 );
-        
+        InvokeRepeating("SpawnObs", 2, 2);
+        playerCtrtl = GameObject.Find("Player").GetComponent<PlayerController>();
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     void SpawnObs()
     {
-        Instantiate(obsPrefab, spawnPos, obsPrefab.transform.rotation);
+        if (playerCtrtl.gameOver == false)
+        {
+            Instantiate(obsPrefab, spawnPos, obsPrefab.transform.rotation);
+        }
+
     }
 
 }
+
+    
+
+    
+    
+
+
+
+
